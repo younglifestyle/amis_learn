@@ -18,7 +18,11 @@ func main() {
 		c.HTML(http.StatusOK, "login.html", "")
 	})
 	r.POST("/login", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{})
+		c.JSON(http.StatusOK, gin.H{
+			"status": 0,
+			"msg":    "",
+			"data":   "",
+		})
 	})
 	r.Run(":8099")
 }
