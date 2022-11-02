@@ -12,8 +12,9 @@ func main() {
 
 	r.LoadHTMLFiles("./web/login.html")
 
-	r.Static("/sdk", "./web/sdk")
+	//r.Static("/sdk", "./web/sdk")
 	r.Static("/web", "./web")
+	r.Static("/pages", "./web/pages")
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "login.html", "")
 	})
