@@ -1,0 +1,22 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "pages": [
+      {
+        "label": "Home",
+        "url": "/",
+        "redirect": "status"
+      },
+      {
+        "label": "打印状态",
+        "children": [
+          {
+            "url": "/status",
+            "schemaApi": "get:/pages/leaf-list.json"
+          }
+        ]
+      }
+    ]
+  }
+}

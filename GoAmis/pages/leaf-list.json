@@ -1,0 +1,117 @@
+{
+  "type": "page",
+  "title": "",
+  "remark": null,
+  "name": "",
+  "body": [
+    {
+      "type": "form",
+      "title": "防火墙状态",
+      "initApi": "get:/api/v1/printerClient/check",
+      "api": "get:/api/v1/printerClient/check",
+      "body": [
+        {
+          "type": "input-text",
+          "id": "firewallStatus",
+          "name": "msg",
+          "static": true,
+          "mode": "inline"
+        }
+      ],
+      "actions": [
+        {
+          "type": "submit",
+          "label": "服务器链接检查",
+          "level": "success"
+        }
+      ],
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            {
+              "actionType": "setValue",
+              "componentId": "firewallStatus",
+              "args": {
+                "value": "${event.data.result.msg}"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "crud",
+      "name": "crud",
+      "api": "/api/v1/printerClient/printer",
+      "loadDataOnce": true,
+      "syncLocation": false,
+      "headerToolbar": [
+        {
+          "type": "action",
+          "align": "right",
+          "label": "刷新打印机列表",
+          "primary": true,
+          "actionType": "reload",
+          "target": "crud"
+        }
+      ],
+      "columns": [
+        {
+          "name": "name",
+          "label": "打印机名称"
+        },
+        {
+          "name": "default",
+          "label": "默认打印机",
+          "type": "static",
+          "value": "否"
+        },
+        {
+          "name": "work_offline",
+          "label": "离线",
+          "type": "static",
+          "value": "否"
+        },
+        {
+          "name": "printer_status",
+          "label": "状态信息",
+          "type": "mapping",
+          "map": {
+            "1": "其他",
+            "2": "未知",
+            "3": "闲置",
+            "4": "打印ing",
+            "5": "预热",
+            "6": "停止打印",
+            "7": "离线"
+          }
+        },
+        {
+          "name": "detected_error_state",
+          "label": "错误状态信息",
+          "type": "mapping",
+          "map": {
+            "0": "其他",
+            "1": "未知",
+            "2": "闲置",
+            "3": "低纸",
+            "4": "无纸",
+            "5": "墨粉低",
+            "6": "无墨粉",
+            "7": "门被打开",
+            "8": "纸张卡住",
+            "9": "离线",
+            "10": "需维护",
+            "11": "打印托盘已满"
+          }
+        }
+      ],
+      "affixHeader": true,
+      "columnsTogglable": false,
+      "placeholder": "暂无数据"
+    }
+  ]
+}
